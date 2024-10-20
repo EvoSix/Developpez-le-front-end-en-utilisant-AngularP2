@@ -1,0 +1,24 @@
+<p>Number of countries {{countryTotal}}</p>
+<p>Number of JOs {{joTotal}}</p>
+
+
+
+   <div *ngFor="let gg of transtormData">
+<span>{{gg.name}}:</span> <span>{{gg.value}}</span>
+
+</div>
+<ngx-charts-pie-chart
+  
+ 
+  [results]="transtormData"
+  [gradient]="gradient"
+  [legend]="showLegend"
+ [customColors]="colorScheme"
+  [labels]="true"
+  [doughnut]="isDoughnut"
+  (select)="onSelect($event)"
+
+  >
+</ngx-charts-pie-chart>
+
+

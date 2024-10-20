@@ -17,6 +17,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+        "rfdc"
+     ],
             "outputPath": "dist/olympic-games-starter",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -103,5 +106,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "b5b1a7c8-c83e-487e-8ba6-73e82cd44bc9"
   }
 }
