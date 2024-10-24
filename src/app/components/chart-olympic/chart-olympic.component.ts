@@ -3,7 +3,7 @@ import { Component,Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Olympic } from 'src/app/core/models/Olympic';//import du model d'interface olympic
 import { Participation } from 'src/app/core/models/Participation';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-chart-olympic',
   standalone: true,
@@ -12,6 +12,10 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
   styleUrl: './chart-olympic.component.scss'
 })
 export class ChartOlympicComponent {
+
+  constructor(private router: Router) {}//PK ???????????,
+
+
 
 
   @Input() data: Olympic[] = [];//Tableau d'interfaces olympic
@@ -71,12 +75,12 @@ private CountingJO(superdata:Olympic[]):void
 
 private CountingMedals (megadata:Olympic[]):void
 {
-  const medalsobj: {name:string, value:number}[]=[];
-  let medalfilterd: number=0;
+  const medalsobj: {id:number,name:string, value:number}[]=[];
+
   
   megadata.forEach(
     jo=>{
-      medalsobj.push({name:jo.country,value:this.Totalmedals(jo.participations)});
+      medalsobj.push({id:jo.id,name:jo.country,value:this.Totalmedals(jo.participations)});
      
     }
   )
@@ -97,7 +101,8 @@ console.log(m.athleteCount+":"+ totalM);
 
 
 onSelect(event: any): void {
-  console.log('Item clicked', JSON.parse(JSON.stringify(event)));
+  console.log('Item clicked', event.name);
+this.router.navigate(['/detail',event.name]);
 }
 
 ngOnChanges(changes: SimpleChanges): void //On Recalcule lors du changment de data. oninit ne le fait pas, et retourne un tableau vide

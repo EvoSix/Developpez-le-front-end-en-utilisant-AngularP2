@@ -37,6 +37,22 @@
           }
         }
       }
+    },
+    {
+      "type": "npm",
+      "script": "install",
+      "group": "none",
+      "problemMatcher": [],
+      "label": "npm: install",
+      "detail": "install dependencies from package"
+    },
+    {
+      "type": "npm",
+      "script": "watch",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: watch",
+      "detail": "ng build --watch --configuration development"
     }
   ]
 }

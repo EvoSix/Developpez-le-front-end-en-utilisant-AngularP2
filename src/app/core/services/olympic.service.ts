@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError,map ,tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +27,15 @@ export class OlympicService {
 
   getOlympics() {
     return this.olympics$.asObservable();
+  }
+  getCountry(country: string) {
+    return this.getOlympics().pipe(
+      map((olympics) => {
+        if (!olympics) {
+          return []; // Si les données sont nulles ou undefined, renvoyer un tableau vide
+        }
+        return olympics.filter((olympic: { country: string }) => olympic.country === country);
+      })
+    );
   }
 }

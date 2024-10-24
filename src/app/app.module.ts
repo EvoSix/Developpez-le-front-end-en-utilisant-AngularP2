@@ -6,11 +6,12 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ChartOlympicComponent } from "./components/chart-olympic/chart-olympic.component";
+import {CountryDetailComponent} from "./components/country-detail/country-detail.component"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { DetailComponent } from './pages/detail/detail.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartOlympicComponent, BrowserAnimationsModule ],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent,DetailComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartOlympicComponent, BrowserAnimationsModule, CountryDetailComponent ],
   providers: [],
   bootstrap: [AppComponent],
 })
