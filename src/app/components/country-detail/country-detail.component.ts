@@ -11,11 +11,20 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
   styleUrl: './country-detail.component.scss'
 })
 export class CountryDetailComponent {
-  @Input() data: Olympic[] = [];
-  transformdata: any[]=[];
-  gradient: boolean = false;
-  showLegend: boolean = true;
+  @Input() data: any[] = [];
+  
+  view: [number,number] = [700, 300];
+
+  legend: boolean = true;
   showLabels: boolean = true;
+  animations: boolean = true;
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showYAxisLabel: boolean = true;
+  showXAxisLabel: boolean = true;
+  xAxisLabel: string = 'Year';
+  yAxisLabel: string = 'Population';
+  timeline: boolean = true;
  
   legendPosition: string = 'below';
   
@@ -23,22 +32,16 @@ export class CountryDetailComponent {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   }
   constructor (){
-    console.log(this.data);
+
+   
   }
 
-private resultRemap():Olympic[]{
 
-
-
-}
-
-
-  ngOnChanges(changes: SimpleChanges): void //On Recalcule lors du changment de data. oninit ne le fait pas, et retourne un tableau vide
-  {
-    if (changes['data'] && this.data) {
-      this.transformdata= this.data;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['data'] && changes['data'].currentValue) {
+      console.log('Data received in CountryDetailComponent:', this.data);
+      // `data` a été mis à jour, vous pouvez faire ici toute autre manipulation nécessaire
     }
-  
   }
 
 }

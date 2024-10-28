@@ -28,13 +28,13 @@ export class OlympicService {
   getOlympics() {
     return this.olympics$.asObservable();
   }
-  getCountry(country: string) {
+  getCountry(id: number) {
     return this.getOlympics().pipe(
       map((olympics) => {
         if (!olympics) {
-          return []; // Si les données sont nulles ou undefined, renvoyer un tableau vide
+          return undefined; // Si les données sont nulles ou undefined, renvoyer un tableau vide
         }
-        return olympics.filter((olympic: { country: string }) => olympic.country === country);
+        return olympics.find((olympic: { id: number }) => olympic.id === id);
       })
     );
   }

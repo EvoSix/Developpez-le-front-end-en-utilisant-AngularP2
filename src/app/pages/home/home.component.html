@@ -1,4 +1,5 @@
 <h2>Olympic games app</h2>
 <hr />
-
-<app-chart-olympic [data]="(olympics$ | async) ?? []"> </app-chart-olympic>
+<div>Nombre de JO:</div>
+<div>Nombre de Pays:</div>
+<app-chart-olympic [data]="transtormData" (selectedCountry)="onSelectCountry($event)"> </app-chart-olympic>
