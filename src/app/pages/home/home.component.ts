@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
   transtormData: any[] = []; //Mise en forme de donnée si necessaires
   countryTotal: number = 0;//Initialise le nombre totale de pays
   joTotal: number = 0;
-
-
+title:string="Number of Jos"
+title2:string ="Number of countries"
 
   constructor(private olympicService: OlympicService,private router: Router) {
 

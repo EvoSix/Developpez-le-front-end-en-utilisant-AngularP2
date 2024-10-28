@@ -9,9 +9,20 @@ import { ChartOlympicComponent } from "./components/chart-olympic/chart-olympic.
 import {CountryDetailComponent} from "./components/country-detail/country-detail.component"
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DetailComponent } from './pages/detail/detail.component';
+import { TextBlockComponent } from './components/text-block/text-block.component';
+import { HeaderComponent } from './Layout/header/header.component';
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent,DetailComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, ChartOlympicComponent, BrowserAnimationsModule, CountryDetailComponent ],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent,DetailComponent,],
+  imports: [
+    BrowserModule, 
+    AppRoutingModule, 
+    HttpClientModule, 
+    ChartOlympicComponent, 
+    BrowserAnimationsModule, 
+    CountryDetailComponent,
+    TextBlockComponent, 
+    HeaderComponent 
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

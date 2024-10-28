@@ -9,6 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TextBlockComponent {
 @Input() title:string ="";
-@Input() message:string="";
+@Input() message:number=0;
 
 }

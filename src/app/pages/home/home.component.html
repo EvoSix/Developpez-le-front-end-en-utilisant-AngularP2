@@ -1,5 +1,5 @@
-<h2>Olympic games app</h2>
-<hr />
-<div>Nombre de JO:</div>
-<div>Nombre de Pays:</div>
+<app-header [title]="'Medals per Country'"></app-header>
+
+<app-text-block [title]="title" [message]="joTotal"></app-text-block>
+<app-text-block [title]="title2" [message]="countryTotal"></app-text-block>
 <app-chart-olympic [data]="transtormData" (selectedCountry)="onSelectCountry($event)"> </app-chart-olympic>

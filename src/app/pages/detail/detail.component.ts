@@ -16,6 +16,7 @@ export class DetailComponent implements OnInit {
   public olympics$: Observable<Olympic>;
   id!: number; //Pk ! ?
   gg: any[] = [];
+  title:string="";
   constructor(private route: ActivatedRoute, private olympicService: OlympicService) {
 
 
@@ -60,11 +61,15 @@ export class DetailComponent implements OnInit {
   }
 
 
+
+
+
   ngOnInit(): void {
     this.olympics$.subscribe((data: Olympic) => {
       if (data) {
         this.dataTransform(data);
         this.gg = [...this.gg]; ////mais pk ? cheminement
+        this.title= data.country;
       }
 
 
