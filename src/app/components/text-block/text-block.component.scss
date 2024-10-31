@@ -1,0 +1,14 @@
+.container {
+    display: inline-flex;
+    justify-content: center; 
+    align-items: center;     
+    flex-direction: column;  
+         padding: 8px;        
+    border-radius: 8px;     
+    border:#04838f solid 2px;
+    p {
+        
+     
+      font-size: 1.2rem;         // Taille de la police
+    }
+}

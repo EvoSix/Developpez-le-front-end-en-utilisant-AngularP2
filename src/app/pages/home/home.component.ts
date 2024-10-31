@@ -4,6 +4,7 @@ import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { Participation } from 'src/app/core/models/Participation';
 import { Router } from '@angular/router';
+import { PieChart } from 'src/app/core/models/charts/piecharts';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
 
   public olympics$: Observable<Olympic[]>;
   result: Olympic[]=[];
-  transtormData: any[] = []; //Mise en forme de donnée si necessaires
+  transtormData: PieChart[] = []; //Mise en forme de donnée si necessaires
   countryTotal: number = 0;//Initialise le nombre totale de pays
   joTotal: number = 0;
 title:string="Number of Jos"
@@ -60,7 +61,7 @@ title2:string ="Number of countries"
 
 
   private CountingMedals(megadata: Olympic[]): void {
-    const medalsobj: { id: number, name: string, value: number }[] = [];
+    const medalsobj: PieChart[] = [];
 
 
     megadata.forEach(
@@ -85,7 +86,7 @@ title2:string ="Number of countries"
   }
 
 
-  onSelectCountry($event: any) {
+  onSelectCountry($event: PieChart) {
     if ($event && $event.id) {
       this.router.navigate(['/detail', $event.id]); // Navigate with test.id
     }

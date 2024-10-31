@@ -2,6 +2,7 @@ import { NgFor } from '@angular/common';
 import { Component,EventEmitter,Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { Router } from '@angular/router';
+import { PieChart } from 'src/app/core/models/charts/piecharts';
 @Component({
   selector: 'app-chart-olympic',
   standalone: true,
@@ -16,8 +17,8 @@ export class ChartOlympicComponent {
 
 
 //@Output
-  @Input() data: any[] = [];//Tableau d'interfaces olympic
-  @Output() selectedCountry = new EventEmitter<any>();
+  @Input() data: PieChart[] = [];//Tableau d'interfaces PieChart
+  @Output() selectedCountry = new EventEmitter<PieChart>();
 gradient: boolean = false;
 showLegend: boolean = true;
 showLabels: boolean = true;
@@ -36,10 +37,11 @@ colorScheme =
 
 
 
-onSelect(event: any): void {
+onSelect(event: PieChart): void {
 
  let test = this.data.find((element) => element.name == event.name);
 if(test){
+ 
   this.selectedCountry.emit(test);
 }
 }
