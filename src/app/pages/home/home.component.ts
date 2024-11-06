@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { OlympicService } from 'src/app/core/services/olympic.service';
 import { Olympic } from 'src/app/core/models/Olympic';
 import { Participation } from 'src/app/core/models/Participation';
@@ -10,100 +10,79 @@ import { PieChart } from 'src/app/core/models/charts/piecharts';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
-
+export class HomeComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[]>;
-  result: Olympic[]=[];
+  private olympicsSubscription: Subscription = new Subscription();
+  result: Olympic[] = [];
   transtormData: PieChart[] = []; //Mise en forme de donnée si necessaires
-  countryTotal: number = 0;//Initialise le nombre totale de pays
+  countryTotal: number = 0; //Initialise le nombre totale de pays
   joTotal: number = 0;
-title:string="Number of Jos"
-title2:string ="Number of countries"
+  title: string = 'Number of Jos';
+  title2: string = 'Number of countries';
 
-  constructor(private olympicService: OlympicService,private router: Router) {
-
+  constructor(private olympicService: OlympicService, private router: Router) {
     this.olympics$ = this.olympicService.getOlympics();
-
-
   }
 
-
-
-  private Counting(olympicData: Olympic[]): void {
-
-
-    this.countryTotal = olympicData.length;
-
+  private numberCountry(olympicData: Olympic[]): number {
+    return olympicData.length;
   }
 
-  private CountingJO(superdata: Olympic[]): void {
+  private numberJO(superdata: Olympic[]): number {
     const yearsfilter: number[] = [];
 
-    superdata.forEach
-      (
-        id => {
-          id.participations.forEach
-            (
-              years => {
-                yearsfilter.push(years.year);
+    superdata.forEach((id) => {
+      id.participations.forEach((years) => {
+        yearsfilter.push(years.year);
+      });
+    });
+    const yearsfiltered = yearsfilter.filter(function (elem, index, self) {
+      return index === self.indexOf(elem);
+    });
 
+    return yearsfiltered.length;
+  }
 
-              }
-            )
-        }
-      )
-
-    const yearsfiltered = yearsfilter.filter(function (elem, index, self) { return index === self.indexOf(elem) })
-
-    this.joTotal = yearsfiltered.length;
-  };
-
-
-
-  private CountingMedals(megadata: Olympic[]): void {
+  private calculMedals(megadata: Olympic[]): PieChart[] {
     const medalsobj: PieChart[] = [];
 
+    megadata.forEach((jo) => {
+      medalsobj.push({
+        id: jo.id,
+        name: jo.country,
+        value: this.participationMedals(jo.participations),
+      });
+    });
 
-    megadata.forEach(
-      jo => {
-        medalsobj.push({ id: jo.id, name: jo.country, value: this.Totalmedals(jo.participations) });
-
-      }
-    )
-    this.transtormData = medalsobj;
+    return medalsobj;
   }
 
-
-  private Totalmedals(paticipation: Participation[]): number {
+  private participationMedals(paticipation: Participation[]): number {
     let totalM: number = 0;
 
-    paticipation.forEach(m => {
+    paticipation.forEach((m) => {
       totalM = totalM + m.medalsCount;
-      console.log(m.athleteCount + ":" + totalM);
-    })
-    return totalM
-
+      console.log(m.athleteCount + ':' + totalM);
+    });
+    return totalM;
   }
-
 
   onSelectCountry($event: PieChart) {
     if ($event && $event.id) {
       this.router.navigate(['/detail', $event.id]); // Navigate with test.id
     }
-   
   }
 
-
-///pk reassigne dans details , mais pas ici
-
   ngOnInit(): void {
-    this.olympics$.subscribe((data: Olympic[]) => {
+    this.olympicsSubscription = this.olympics$.subscribe((data: Olympic[]) => {
       if (data) {
-        this.Counting(data);        
-        this.CountingJO(data);       
-        this.CountingMedals(data);   
+        this.countryTotal = this.numberCountry(data);
+        this.joTotal = this.numberJO(data);
+        this.transtormData = this.calculMedals(data);
       }
     });
-
+  }
+  ngOnDestroy(): void {
+    this.olympicsSubscription.unsubscribe();
   }
 }

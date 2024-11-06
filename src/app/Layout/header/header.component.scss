@@ -1,0 +1,25 @@
+:host { // pseudo-classe en Angular qui applique le style directement à l'élément racine du composant
+    display: flex;   
+    align-self: center;   
+    justify-content: center; 
+    align-items: center; 
+      
+    
+  }
+
+
+
+
+
+
+
+
+.title{
+    background-color: #04838f;  
+    padding: 8px;              
+    border-radius: 8px;         
+    text-align: center;         
+    color: #ffffff; 
+              
+    font-size: 1.5rem; 
+}

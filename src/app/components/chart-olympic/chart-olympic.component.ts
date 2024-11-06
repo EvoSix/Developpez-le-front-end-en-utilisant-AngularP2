@@ -20,19 +20,19 @@ export class ChartOlympicComponent {
   @Input() data: PieChart[] = [];//Tableau d'interfaces PieChart
   @Output() selectedCountry = new EventEmitter<PieChart>();
 gradient: boolean = false;
-showLegend: boolean = true;
+showLegend: boolean = false;
 showLabels: boolean = true;
 isDoughnut: boolean = false;
 legendPosition: string = 'below';
 
-colorScheme =
+/*colorScheme =
 [ {name:"Germany",value:'#a8385d'},
  
   {name:"France",value:'#a27ea8'},
   {name:"United States",value:'#7aa3e5'},
   {name:"Spain",value:'#adcded'},
   {name:"Italy",value:'#a95963'}
-];
+];*/
 
 
 
