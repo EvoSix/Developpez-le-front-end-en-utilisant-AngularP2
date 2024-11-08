@@ -5,17 +5,23 @@
 
 
 <ngx-charts-pie-chart
-  
- 
+  [maxLabelLength]="10000"
+ [trimLabels]="false"
   [results]="data"
   [gradient]="gradient"
   [legend]="showLegend"
 [view]="view"
-  [labels]="true"
+  [labels]="showLabels"
   [doughnut]="isDoughnut"
  (window:resize)="onResize($event)"
   (select)="onSelect($event)"
   >
+  <ng-template class="tootlip" #tooltipTemplate let-model="model">
+    <div class="tt" role="tooltip">
+    <p>{{model.name}}</p>
+    <p><img src="../../../assets/logo/award-solid.svg" width="16px"/> {{model.value}}</p>
+    </div>
+</ng-template>
 </ngx-charts-pie-chart>
 
 

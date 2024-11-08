@@ -1,16 +1,16 @@
 import { NgFor } from '@angular/common';
-import { Component,EventEmitter,Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Component,EventEmitter,Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 import { Router } from '@angular/router';
 import { PieChart } from 'src/app/core/models/charts/piecharts';
 @Component({
   selector: 'app-chart-olympic',
   standalone: true,
-  imports: [NgFor,NgxChartsModule],
+  imports: [NgxChartsModule],
   templateUrl: './chart-olympic.component.html',
   styleUrl: './chart-olympic.component.scss'
 })
-export class ChartOlympicComponent {
+export class ChartOlympicComponent implements OnInit {
 
   constructor(private router: Router) {}
 
@@ -23,18 +23,22 @@ gradient: boolean = false;
 showLegend: boolean = false;
 showLabels: boolean = true;
 isDoughnut: boolean = false;
-legendPosition: string = 'below';
 
-
-
-
-onResize(event:any){
-  if(event.target.innerWidth < 700){
-this.view=[event.target.innerWidth,400]
+screenWidth:number = window.innerWidth;
+screenSized(elementSize:number): [number, number] {
+ 
+  if (elementSize < 700) {
+    return [elementSize, 400]; // Taille pour les écrans mobiles
+  }
+  return [700, 400]; // Taille pour les écrans plus larges
 }
-else
-this.view=[700,400]
-//console.log(this.view);
+
+ngOnInit(): void {
+  this.view = this.screenSized(this.screenWidth); // Appel initial pour définir la taille
+}
+onResize(event:any){
+  this.view = this.screenSized(event.target.innerWidth);
+
 }
 
 onSelect(event: PieChart): void {

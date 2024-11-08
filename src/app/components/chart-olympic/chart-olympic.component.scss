@@ -1,0 +1,19 @@
+::ng-deep ngx-tooltip-content.ngx-charts-tooltip-content.type-tooltip {
+    .tooltip-caret.position-top {
+      border-top-color: #04838f;
+      box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+    }
+  p{
+    margin:4px;
+  }
+    background-color: #04838f;
+  font-size: 1rem;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+  }
+  .pie-label{
+  
+  }
+ 
+::ng-deep .pie-label{
+    font-size: 16px!important;
+}

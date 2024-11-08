@@ -1,4 +1,4 @@
-import { Component,Input,SimpleChanges } from '@angular/core';
+import { Component,Input,OnInit,SimpleChanges } from '@angular/core';
 import { Olympic } from 'src/app/core/models/Olympic';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
 
@@ -10,9 +10,10 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
   templateUrl: './country-detail.component.html',
   styleUrl: './country-detail.component.scss'
 })
-export class CountryDetailComponent {
+export class CountryDetailComponent implements OnInit {
   @Input() data: any[] = [];
-  
+ 
+   @Input() xAxisLabel:string=""
   view:[number,number]=[700,400];
 
   legend: boolean = false;
@@ -20,12 +21,12 @@ export class CountryDetailComponent {
   animations: boolean = true;
   xAxis: boolean = true;
   yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
+  showYAxisLabel: boolean = false;
   showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Medals';
+
+  
   timeline: boolean = true;
- 
+  screenWidth:number = window.innerWidth;
   legendPosition: string = 'below';
   
   colorScheme = {
@@ -35,13 +36,22 @@ export class CountryDetailComponent {
 
    
   }
-  onResize(event:any){
-    if(event.target.innerWidth < 700){
-      this.view=[event.target.innerWidth,400]
-      }
-      else
-      this.view=[700,400]
+  screenSized(elementSize:number): [number, number] {
+ 
+    if (elementSize < 700) {
+      return [elementSize, 400]; // Taille pour les écrans mobiles
     }
+    return [700, 400]; // Taille pour les écrans plus larges
+  }
+  
+  ngOnInit(): void {
+    this.view = this.screenSized(this.screenWidth); // Appel initial pour définir la taille
+  }
+  onResize(event:any){
+    this.view = this.screenSized(event.target.innerWidth);
+ 
+  }
+  
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && changes['data'].currentValue) {
