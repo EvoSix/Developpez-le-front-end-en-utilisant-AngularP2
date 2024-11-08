@@ -13,7 +13,7 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 export class CountryDetailComponent {
   @Input() data: any[] = [];
   
-  //view: [number,number] = [700, 300];
+  view:[number,number]=[700,400];
 
   legend: boolean = false;
   showLabels: boolean = true;
@@ -23,7 +23,7 @@ export class CountryDetailComponent {
   showYAxisLabel: boolean = true;
   showXAxisLabel: boolean = true;
   xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
+  yAxisLabel: string = 'Medals';
   timeline: boolean = true;
  
   legendPosition: string = 'below';
@@ -35,7 +35,13 @@ export class CountryDetailComponent {
 
    
   }
-
+  onResize(event:any){
+    if(event.target.innerWidth < 700){
+      this.view=[event.target.innerWidth,400]
+      }
+      else
+      this.view=[700,400]
+    }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['data'] && changes['data'].currentValue) {

@@ -1,7 +1,7 @@
 
 <ngx-charts-line-chart 
 [results]="data"
-
+[view]="view"
   [legend]="legend"
   [showXAxisLabel]="showXAxisLabel"
   [showYAxisLabel]="showYAxisLabel"
@@ -10,7 +10,7 @@
   [xAxisLabel]="xAxisLabel"
   [yAxisLabel]="yAxisLabel"
   [timeline]="timeline"
-
+  (window:resize)="onResize($event)"
 
 >
    
