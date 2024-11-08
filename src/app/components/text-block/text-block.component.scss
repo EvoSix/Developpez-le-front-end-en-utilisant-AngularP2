@@ -13,3 +13,9 @@
       font-size: 1.2rem;         // Taille de la police
     }
 }
+.container span:first-child{
+  color:darkgrey
+}
+.container span:last-child{
+ font-weight: bold;
+}
