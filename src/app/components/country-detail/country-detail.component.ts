@@ -13,9 +13,9 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 export class CountryDetailComponent {
   @Input() data: any[] = [];
   
-  view: [number,number] = [700, 300];
+  //view: [number,number] = [700, 300];
 
-  legend: boolean = true;
+  legend: boolean = false;
   showLabels: boolean = true;
   animations: boolean = true;
   xAxis: boolean = true;

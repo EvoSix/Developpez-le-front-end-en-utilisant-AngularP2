@@ -1,7 +1,7 @@
 <app-header title="Medals per Country"></app-header>
 <div class="textblocks">
-    <app-text-block [title]="title" [message]="joTotal"></app-text-block>
-    <app-text-block [title]="title2" [message]="countryTotal"></app-text-block>
+    <app-text-block title="Number of Jos" [message]="joTotal"></app-text-block>
+    <app-text-block title="Number of countries" [message]="countryTotal"></app-text-block>
 </div>
 
-<app-chart-olympic [data]="transtormData" (selectedCountry)="onSelectCountry($event)"> </app-chart-olympic>
+<app-chart-olympic class="charts" [data]="transtormData" (selectedCountry)="onSelectCountry($event)"> </app-chart-olympic>

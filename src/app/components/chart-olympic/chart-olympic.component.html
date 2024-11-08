@@ -10,10 +10,10 @@
   [results]="data"
   [gradient]="gradient"
   [legend]="showLegend"
-
+[view]="view"
   [labels]="true"
   [doughnut]="isDoughnut"
-  
+ (window:resize)="onResize($event)"
   (select)="onSelect($event)"
   >
 </ngx-charts-pie-chart>

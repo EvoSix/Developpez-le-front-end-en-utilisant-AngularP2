@@ -14,7 +14,7 @@ export class ChartOlympicComponent {
 
   constructor(private router: Router) {}
 
-
+view:[number,number]=[700,400];
 
 //@Output
   @Input() data: PieChart[] = [];//Tableau d'interfaces PieChart
@@ -35,7 +35,9 @@ legendPosition: string = 'below';
 ];*/
 
 
-
+onResize(event:any){
+this.view=[event.target.innerWidth,400]
+}
 
 onSelect(event: PieChart): void {
 

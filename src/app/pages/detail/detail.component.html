@@ -1,7 +1,7 @@
 <app-header [title]="pagetitle"></app-header>
-
-<app-text-block [title]="title1" [message]="totalentries"></app-text-block>
-<app-text-block [title]="title2" [message]="totalmedals"></app-text-block>
-<app-text-block [title]="title3" [message]="totalathlete"></app-text-block>
-<app-country-detail [data]="gg"></app-country-detail>
+<div class="textblocks">
+<app-text-block title="Number of entries" [message]="totalentries"></app-text-block>
+<app-text-block title="Total number of medals" [message]="totalmedals"></app-text-block>
+<app-text-block title="Total number of athletes" [message]="totalathlete"></app-text-block></div>
+<app-country-detail class="charts" [data]="gg"></app-country-detail>
 <button (click)="onClick()">retour</button>

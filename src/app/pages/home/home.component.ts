@@ -12,13 +12,13 @@ import { PieChart } from 'src/app/core/models/charts/piecharts';
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public olympics$: Observable<Olympic[]>;
-  private olympicsSubscription: Subscription = new Subscription();
+  private olympicsSubscription!: Subscription;
   result: Olympic[] = [];
   transtormData: PieChart[] = []; //Mise en forme de donnée si necessaires
   countryTotal: number = 0; //Initialise le nombre totale de pays
   joTotal: number = 0;
-  title: string = 'Number of Jos';
-  title2: string = 'Number of countries';
+  title: string = '';
+  title2: string = '';
 
   constructor(private olympicService: OlympicService, private router: Router) {
     this.olympics$ = this.olympicService.getOlympics();

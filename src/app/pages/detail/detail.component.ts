@@ -17,9 +17,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   id!: number; //Pk ! ?
   gg: LineChart[] = [];
   pagetitle: string = '';
-  title1: string = 'Number of entries';
-  title2: string = 'Total number of medals';
-  title3: string = 'Total number of athletes';
+
   totalentries: number = 0;
   totalmedals: number = 0;
   totalathlete: number = 0;

@@ -2,5 +2,22 @@
 body{
     display: flex;
     justify-content: center;
-    
+    align-items: center ;
+}
+.charts{
+    display: block;
+    width:100%;
+    height: 100%;
+    @media (max-width: 768px) {
+        width: 300px;
+      }
+}
+.textblocks{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: center;
+      }
 }
