@@ -9,7 +9,7 @@ import { Olympic } from '../models/Olympic';
 })
 export class OlympicService {
   private olympicUrl = './assets/mock/olympic.json';
-  private olympics$ = new BehaviorSubject<any>(undefined);
+  private olympics$ = new BehaviorSubject<Olympic[] | null>(null);
 
   constructor(private http: HttpClient) {}
 
@@ -29,11 +29,11 @@ export class OlympicService {
   getOlympics() {
     return this.olympics$.asObservable();
   }
-  getCountry(id: number) {
+  getCountry(id: number)  {
     return this.getOlympics().pipe(
       map((olympics) => {
         if (!olympics) {
-          return undefined; // Si les données sont nulles ou undefined, renvoyer un tableau vide
+          return null; // Si les données sont nulles ou undefined, renvoyer un tableau vide
         }
         return olympics.find((olympic: { id: number }) => olympic.id === id);
       })

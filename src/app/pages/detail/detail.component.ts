@@ -12,7 +12,7 @@ import { LineChart, SeriesL } from 'src/app/core/models/charts/linechart';
   styleUrl: './detail.component.scss',
 })
 export class DetailComponent implements OnInit, OnDestroy {
-  public olympics$: Observable<Olympic>;
+  public olympics$: Observable<Olympic | null |undefined>;
   private olympicsSubscription: Subscription = new Subscription;
   id!: number; //Pk ! ?
   gg: LineChart[] = [];
@@ -62,7 +62,7 @@ export class DetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.olympicsSubscription= this.olympics$.subscribe((data: Olympic) => {
+    this.olympicsSubscription= this.olympics$.subscribe((data: Olympic | null |undefined) => {
       if (data) {
         
         this.gg = this.dataTransform(data);

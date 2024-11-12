@@ -11,7 +11,7 @@ import { PieChart } from 'src/app/core/models/charts/piecharts';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit, OnDestroy {
-  public olympics$: Observable<Olympic[]>;
+  public olympics$: Observable<Olympic[] | null>
   private olympicsSubscription!: Subscription;
   result: Olympic[] = [];
   transtormData: PieChart[] = []; //Mise en forme de donnée si necessaires
@@ -74,7 +74,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.olympicsSubscription = this.olympics$.subscribe((data: Olympic[]) => {
+    this.olympicsSubscription = this.olympics$.subscribe((data: Olympic[]| null) => {
       if (data) {
         this.countryTotal = this.numberCountry(data);
         this.joTotal = this.numberJO(data);
