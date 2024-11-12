@@ -40,7 +40,7 @@ export class DetailComponent implements OnInit, OnDestroy {
    return medalsobj;
   }
 
-  private participeToSerie(paticipation: Participation[]): any {
+  private participeToSerie(paticipation: Participation[]): SeriesL[] {
     let medalsCounting: number = 0;
     let participation: number = 0;
     let athletes: number = 0;

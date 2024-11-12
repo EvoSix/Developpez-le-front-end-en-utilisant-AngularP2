@@ -47,8 +47,10 @@ export class CountryDetailComponent implements OnInit {
   ngOnInit(): void {
     this.view = this.screenSized(this.screenWidth); // Appel initial pour définir la taille
   }
-  onResize(event:any){
-    this.view = this.screenSized(event.target.innerWidth);
+  onResize(event:Event){
+    const target = event.target as Window; 
+
+  this.view = this.screenSized(target.innerWidth);
  
   }
   

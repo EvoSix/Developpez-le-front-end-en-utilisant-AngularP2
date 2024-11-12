@@ -28,7 +28,7 @@ screenWidth:number = window.innerWidth;
 screenSized(elementSize:number): [number, number] {
  
   if (elementSize < 700) {
-    return [elementSize, 400]; // Taille pour les écrans mobiles
+    return [elementSize, 400]; 
   }
   return [700, 400]; // Taille pour les écrans plus larges
 }
@@ -36,8 +36,10 @@ screenSized(elementSize:number): [number, number] {
 ngOnInit(): void {
   this.view = this.screenSized(this.screenWidth); // Appel initial pour définir la taille
 }
-onResize(event:any){
-  this.view = this.screenSized(event.target.innerWidth);
+onResize(event:Event){
+  const target = event.target as Window; 
+
+  this.view = this.screenSized(target.innerWidth - 70);
 
 }
 
